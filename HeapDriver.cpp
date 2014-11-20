@@ -1,6 +1,5 @@
-#include "HeapArray.h"
 #include "HeapSkew.h"
-#include "PQHeap.h"
+//#include "PQHeap.h"
 #include "CD.h"
 using CSC2110::CD;
 #include "Text.h"
@@ -31,27 +30,34 @@ int main()
    ListArray<CD>* cds = CD::readCDs("cds.txt");
    int num_items = cds->size();
    cout << num_items << endl;
-
-//while(true)
-//{
+cout<<"a";
+while(true)
+{
    HeapSkew<CD>* sh = new HeapSkew<CD>(&CD::compare_items);
 
+cout<<"c";
    ListArrayIterator<CD>* iter = cds->iterator();
    while(iter->hasNext())
    {
       CD* cd = iter->next();
       sh->heapInsert(cd);
    }
+cout<<"d";
    delete iter;
+cout<<"b";
 
    while(!(sh->heapIsEmpty()))
    {
+cout<<"e";
       CD* cd = sh->heapRemove();
-      cd->displayCD();
+cout<<"f";
+	if (cd==NULL)
+		cout<<"cd is null";
+      //cd->displayCD();
    }
 
    delete sh;
-//}
+}
    deleteCDs(cds);
    delete cds;
 
