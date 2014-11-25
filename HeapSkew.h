@@ -3,6 +3,9 @@
 
 #include "BinaryTree.h"
 
+#include<iostream>
+using namespace std;
+
 template < class T >
 class HeapSkew : public Drawable
 {
@@ -54,6 +57,7 @@ BinaryTree<T>* HeapSkew<T>::merge(BinaryTree<T>* left, BinaryTree<T>* right)
 {
    //DO THIS
 	if(left->isEmpty())
+<<<<<<< HEAD
 	{
 		delete left;
 		return right;
@@ -88,12 +92,49 @@ BinaryTree<T>* HeapSkew<T>::merge(BinaryTree<T>* left, BinaryTree<T>* right)
 		delete ll;
 		return left;
 	}
+=======
+		return right;
+	
+	else if (right->isEmpty())
+		return left;
+	
+	BinaryTree<T>* temp=NULL;
+	int comp=(*compare_items)(left->getRootItem(),right->getRootItem());
+	if(comp<0)
+	{
+		temp=merge(right,left);
+		return temp;
+	}	
+	
+	BinaryTree<T>* LL=NULL;
+	BinaryTree<T>* LR=NULL;
+	
+	LL=left->detachLeftSubtree();
+	LR=left->detachRightSubtree();
+	
+	left->attachRightSubtree(LL);
+	if (LR->isEmpty())
+	{
+		left->attachLeftSubtree(right);
+		return left;
+	}
+	left->attachLeftSubtree(merge(LR,right));
+	return left;
+
+
+
+
+
+
+
+>>>>>>> 65f86ec939d23516e6e6f11fade26d4f6e90e7a6
 }
 
 template < class T >
 void HeapSkew<T>::heapInsert(T* item)
 {
    //DO THIS (calls merge, should be short)
+<<<<<<< HEAD
 	BinaryTree<T>* left = bt;
 	BinaryTree<T>* right = new BinaryTree <T>(item);
 	bt = merge(left,right);
@@ -102,18 +143,41 @@ void HeapSkew<T>::heapInsert(T* item)
 
 
    sze++;
+=======
+	BinaryTree<T>* lefti=bt;
+	BinaryTree<T>* righti= new BinaryTree<T>(item);
+	bt=merge(lefti,righti);
+	//delete lefti;
+	//delete righti;
+
+	sze++;
+>>>>>>> 65f86ec939d23516e6e6f11fade26d4f6e90e7a6
 }
 
 template < class T >
 T* HeapSkew<T>::heapRemove()
 {
    //DO THIS (calls merge, should be short)
+<<<<<<< HEAD
 	T* result = bt->getRootItem();
 	BinaryTree<T>*left  = bt->detachLeftSubtree();
 	BinaryTree<T>*right = bt->detachRightSubtree();
 	delete bt;
 	bt = merge(left,right);
 	
+=======
+   
+cout<<"\na";
+	BinaryTree<T>* leftr=bt->detachLeftSubtree();
+cout<<"b";
+	BinaryTree<T>* rightr=bt->detachRightSubtree();
+cout<<"c";
+	T* result=bt->getRootItem();
+cout<<"d";
+	bt=merge(leftr,rightr);
+	//delete leftr;
+	//delete rightr;
+>>>>>>> 65f86ec939d23516e6e6f11fade26d4f6e90e7a6
 
    sze--;
    return result;
