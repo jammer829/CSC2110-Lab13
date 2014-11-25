@@ -2,7 +2,7 @@ AutomatedMakefile = am
 CC = g++
 
 FILES = HeapDriver.o
-EXECUTABLE = Heap.exe
+EXECUTABLE = Lab13.exe
 
 PROJECT_PATH = $(PROJECT_DIR)
 GTK_PATH = /$(DRIVE_LETTER)/MinGW/GTK
@@ -20,10 +20,7 @@ all: Project
 
 Project: 		$(FILES)
 			$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
-			
-			
-HeapDriver.o:	HeapDriver.cpp	HeapSkew.h
-				$(COMPILE)	HeapDriver.cpp
 
-
+HeapDriver.o:		DrawHeapSkew.cpp HeapDriver.cpp HeapSkew.h
+				$(COMPILE) HeapDriver.cpp
 
